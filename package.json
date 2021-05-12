@@ -1,0 +1,35 @@
+{
+  "name": "line-pay-senren",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nayrlester/line-pay-senren.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nayrlester/line-pay-senren/issues"
+  },
+  "homepage": "https://github.com/nayrlester/line-pay-senren#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "line-pay": "^1.0.16",
+    "line-pay-sdk": "^1.0.3",
+    "memory-cache": "^0.2.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "socket.io": "^4.1.1",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.8"
+  }
+}
