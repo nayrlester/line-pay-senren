@@ -5,10 +5,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app",
-    "heroku-prebuild": "npm install --dev",
-    "build": "webpack"
+    "heroku-prebuild": "npm install --dev"
   },
-  "heroku-run-build-script": true,
   "engines": {
     "node": "14.x"
   },
