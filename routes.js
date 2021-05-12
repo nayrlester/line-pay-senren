@@ -2,11 +2,10 @@ const linepay = require("./controller/linepay.controller");
 
 module.exports = function(app,io){
 
-    app.get("/", (req, res) => {
-        res.render("index.ejs");
+    app.get("/confirm", (req, res) => {
+        res.render("confirm.ejs");
     })
 
-    //POST
-    app.post("/pay-reserve", linepay.pay_reserve);
+    app.get("/line-pay", linepay.pay_reserve);
 
 }

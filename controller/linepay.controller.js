@@ -1,12 +1,12 @@
 const axios = require('axios');
-const line = require('line-pay-sdk');
-const uuid = require('uuidv4');
+const line = require('line-pay');
+const { v4: uuid } = require('uuid'); 
+const cache = require("memory-cache");
 
-const config = {
-    channelId: process.env.YOUR_LINE_PAY_CHANNEL_ID,
-    channelSecret: process.env.YOUR_LINE_PAY_CHANNEL_SECRET,
-    isSandbox: true
-};
+const pay = new line({
+    channelId: process.env.LINE_PAY_CHANNEL_ID,
+    channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
+}) 
 
 exports.pay_reserve = async function(req, res){
     try{
@@ -19,14 +19,16 @@ exports.pay_reserve = async function(req, res){
             confirmUrl: process.env.LINE_PAY_CONFIRM_URL
         }
     
-        line.reservePayment(options).then((response) => {
+        pay.reserve(options).then((response) => {
             let reservation = options;
             reservation.transactionId = response.info.transactionId;
     
-            console.log('Reservation was made.');
+            console.log(`Reservation was made. Detail is following.`);
             console.log(reservation);
     
+            // Save order information
             cache.put(reservation.transactionId, reservation);
+    
             res.redirect(response.info.paymentUrl.web);
         })
 
