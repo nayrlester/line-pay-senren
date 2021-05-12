@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app",
+    "heroku-prebuild": "npm install --dev",
     "build": "webpack"
   },
   "heroku-run-build-script": true,
