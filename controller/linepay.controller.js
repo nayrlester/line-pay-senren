@@ -26,9 +26,7 @@ exports.pay_reserve = async function(req, res){
             console.log(`Reservation was made. Detail is following.`);
             console.log(reservation);
     
-            // Save order information
             cache.put(reservation.transactionId, reservation);
-    
             res.redirect(response.info.paymentUrl.web);
         })
 
