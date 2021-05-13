@@ -88,3 +88,18 @@ document.getElementById('closeWindowButton').addEventListener('click', function(
         liff.closeWindow();
     }
 });
+
+document.getElementById('sendMessageButton').addEventListener('click', function() {
+    if (!liff.isInClient()) {
+        sendAlertIfNotInClient();
+    } else {
+        liff.sendMessages([{
+            'type': 'text',
+            'text': "Hello, World!"
+        }]).then(function() {
+            window.alert('Message sent');
+        }).catch(function(error) {
+            window.alert('Error sending message: ' + error);
+        });
+    }
+});
