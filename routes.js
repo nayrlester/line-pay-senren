@@ -6,6 +6,9 @@ module.exports = function(app,io){
         res.render("confirm.ejs");
     })
 
-    app.get("/line-pay", linepay.pay_reserve);
+    app.get("/cancel", (req, res) => {
+        res.render("cancel.ejs");
+    })
 
+    app.get("/line-pay", linepay.pay_reserve);
 }
