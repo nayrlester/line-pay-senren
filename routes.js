@@ -8,6 +8,10 @@ const config = {
 
 module.exports = function(app,io){
 
+    app.get("/", (req, res) => {
+        res.render("index.ejs");
+    })
+    
     app.get("/confirm", (req, res) => {
         res.render("confirm.ejs");
     })
@@ -24,7 +28,7 @@ module.exports = function(app,io){
           .then((result) => res.json(result))
           .catch((err) => {
             console.error(err);
-            res.status(500).end();
+            res.status(500).end();  
         });
     });
 }
