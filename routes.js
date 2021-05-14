@@ -16,6 +16,10 @@ const config_bot = {
 
 module.exports = function(app,io){
 
+    app.get('/', function(req, res) {
+        res.render('index.ejs')
+    });
+    
     app.get('/send-id', function(req, res) {
         res.json({id: myLiffId});
     });
