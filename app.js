@@ -4,14 +4,14 @@ let express  = require('express'),
     http = require('http'), 
     path = require('path'),
     https = require('https'),
+    bodyParser=require("body-parser"),
     app = express();
-
-const myLiffId = process.env.LINE_PAY_LIFF_ID;
-
+    
+app.use(express.static(path.join(__dirname, '/public/assests')));
 app.set('views', __dirname + '/public/views');	
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/publice/assets'));
 app.use(express.static(path.join(__dirname)));
+
 const port = process.env.PORT || 8080;
 const io = require('socket.io')(app.listen(port));
 require('./routes')(app, io);
