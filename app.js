@@ -6,7 +6,11 @@ let express  = require('express'),
     https = require('https'),
     app = express();
 
+const myLiffId = process.env.LINE_PAY_LIFF_ID;
 
+app.set('views', __dirname + '/public/views');	
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/publice/assets/js/'));
 app.use(express.static(path.join(__dirname)));
 const port = process.env.PORT || 8080;
 const io = require('socket.io')(app.listen(port));

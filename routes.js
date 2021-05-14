@@ -14,9 +14,15 @@ const config_bot = {
     channelSecret: process.env.LINE_PAY_BOT_SECRET,
 };
 
-
-
 module.exports = function(app,io){
+
+    app.get('/send-id', function(req, res) {
+        res.json({id: myLiffId});
+    });
+
+    app.get('/confirm', function(req, res){
+        res.render('confirm.ejs')
+    })
 
     app.get("/pay-reserve", (req, res) => {
         let options = {
@@ -30,7 +36,8 @@ module.exports = function(app,io){
         pay.reserve(options).then((response) => {
             let reservation = options;
             reservation.transactionId = response.info.transactionId;
-            cache.put(reservation.transactionId, reservation);
+            cache.put("transactionId", reservation.transactionId);
+            cache.put("paymentAccessToke", response.info.paymentAccessToken);
             res.redirect(response.info.paymentUrl.web);
         })
     })
@@ -45,29 +52,20 @@ module.exports = function(app,io){
         });
     });
 
-    app.use("/pay", (req, res) => {
-        let options = {
-            productName: "チョコレート",
-            amount: 1,
-            currency: "JPY",
-            orderId: uuid(),
-            confirmUrl: process.env.LINE_PAY_CONFIRM_URL,
-        }
-
-        pay.middleware(options).then((response) => {
-            console,log(response)
-        })
-    });
-
     app.get(`/pay-confirm`, (req, res) => {
         let optionsConfirm = {
             amount: 1,
             currency: "JPY",
-            transactionId: uuid(),
+            transactionId: req.query.transactionId
         }
-    
+
         pay.confirm(optionsConfirm).then((response) => {
-            console,log(response)
+            if(response.returnMessage == 'Success.'){
+                console.log('Payment success')
+                res.redirect('back');
+            }else{
+                console.log('Payment Failed.')
+            }
         })
     });
 
@@ -75,11 +73,13 @@ module.exports = function(app,io){
         let options = {
             amount: 1,
             currency: "JPY",
-            transactionId: uuid(),
+            transactionId: req.query.transactionId
         }
+
+        console.log(req.query.transactionId)
     
         pay.capture(options).then((response) => {
-            console,log(response)
+            console,log(response.info.payInfo)
         })
     })
 
