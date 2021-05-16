@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My First LIFF</title>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>           
-    <button id="closewindowbutton">LIFF アプリを閉じる</button>
-    <button id="openwindowbutton">ウィンドウを LINE 内で開く</button>
-    <button id="openwindowexternalbutton">ウィンドウを外部ブラウザで開く</button>
-    <button id="sendmessagebutton">メッセージ送信</button>
+<body>   
+    <button id="sendmessagebutton">Send Message</button>
     <div id="profileinfo">
         <h2>Profile</h2>
         <div id="profilepicturediv">
@@ -61,9 +57,9 @@
             </tr>
         </table>
     </div>
-    
-    <!-- LIFF SDK の読み込み -->
+
+    <!-- Load LIFF SDK -->
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-    <script src="/js/liff_send_messages.js"></script>
+    <script src="/js/liff.js"></script>
 </body>
 </html>
