@@ -126,9 +126,9 @@ function registerButtonHandlers() {
 
     // sendMessages call
     document.getElementById('sendMessageButton').addEventListener('click', function() {
-        if (!liff.isInClient()) {
-            sendAlertIfNotInClient();
-        } else {
+        // if (!liff.isInClient()) {
+        //     sendAlertIfNotInClient();
+        // } else {
             liff.sendMessages([{
                 'type': 'text',
                 'text': "You've successfully sent a message! Hooray!"
@@ -137,18 +137,18 @@ function registerButtonHandlers() {
             }).catch(function(error) {
                 window.alert('Error sending message: ' + error);
             });
-        }
+        // }
     });
 
     // get access token
     document.getElementById('getAccessToken').addEventListener('click', function() {
-        if (!liff.isLoggedIn() && !liff.isInClient()) {
-            alert('To get an access token, you need to be logged in. Please tap the "login" button below and try again.');
-        } else {
-            const accessToken = liff.getAccessToken();
+        // if (!liff.isLoggedIn() && !liff.isInClient()) {
+        //     alert('To get an access token, you need to be logged in. Please tap the "login" button below and try again.');
+        // } else {
+            const accessToken = "oyUq0cAaZ2LAbYn86TVcuSCddWcYnHk7l08iW/02vVV7rOqbUZzdmqLIRI6MeT9uJBtQJAWGAiZ0UyFbwKXBBVC2bFnRcuMgyYHnCaoVv+4h20RN167kEoYjyzAUMvhv/F+4iGLcUa+proAQ5YBu5AdB04t89/1O/w1cDnyilFU=";
             document.getElementById('accessTokenField').textContent = accessToken;
             toggleAccessToken();
-        }
+        // }
     });
 
     // get profile call
