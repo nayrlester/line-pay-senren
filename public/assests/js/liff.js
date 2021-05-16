@@ -10,13 +10,16 @@ window.onload = function() {
     if (useNodeJS) {
         fetch('/send-id')
             .then(function(reqResponse) {
+                console.log(reqResponse)
                 return reqResponse.json();
             })
             .then(function(jsonResponse) {
+                console.log(jsonResponse)
                 myLiffId = jsonResponse.id;
                 initializeLiffOrDie(myLiffId);
             })
             .catch(function(error) {
+                console.log(error)
                 document.getElementById("liffAppContent").classList.add('hidden');
                 document.getElementById("nodeLiffIdErrorMessage").classList.remove('hidden');
             });

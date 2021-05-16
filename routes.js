@@ -18,7 +18,7 @@ const config_bot = {
 module.exports = function(app,io){
 
     app.get('/', function(req, res) {
-        res.render('index.ejs')
+        res.render('liff_send_message.ejs')
     });
     
     app.get('/send-id', function(req, res) {
