@@ -13,7 +13,7 @@ const pay = new line_pay({
   isSandbox: true
 });
 
-const config_bot = {
+let config_bot = {
     channelAccessToken: process.env.LINE_PAY_BOT_TOKEN,
     channelSecret: process.env.LINE_PAY_BOT_SECRET,
 };
