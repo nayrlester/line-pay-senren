@@ -44,7 +44,7 @@ module.exports = function(app,io){
             cache.put("transactionId", reservation.transactionId);
             cache.put("paymentAccessToken", response.info.paymentAccessToken);
             cache.put("orderId", reservation.orderId);
-            res.redirect(response.info.paymentUrl.app);
+            res.redirect(response.info.paymentUrl.web);
         })
     })
 
@@ -67,6 +67,8 @@ module.exports = function(app,io){
 
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
+                let text_message = "Thank you from liff";
+                res.redirect(`https://line.me/R/share?text=${text_message}`)
                 // res.writeHead(200, {"Content-Type": "application/json"});
                 // const obj = {
                 //     success: true,
