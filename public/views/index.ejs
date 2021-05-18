@@ -12,9 +12,12 @@
     <p id="displayName"></p>
     <p id="statusMessage"></p>
     <p id="getDecodedIDToken"></p>
-    <button id="button">send test message</button>
     <script  src=" https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js "> </script>
     <script>
+      liff.init({liffId:"1655992232-rGy06EZd"},()=>{
+        liff.login();
+        runApp()
+      });
       function  RunApp (){
         liff.getProfile().then(profile=>{
           document.getElementById("pictureUrl").src=profile.pictureUrl;
@@ -22,14 +25,6 @@
           document.getElementById("displayName").innerHTML='<b>DisplayName:</b>'+profile.displayName;
           document.getElementById("statusMessage").innerHTML='<b>StatusMessage:</b>'+profile.statusMessage;
           document.getElementById("getDecodedIDToken").innerHTML='<b>Email:</b>'+liff.getDecodedIDToken().email;
-        });
-
-        liff.init({liffId:"1655992232-rGy06EZd"},()=>{
-          if(liff.IsLoggedIn()){
-            runApp()
-          }else{
-            liff.login();
-          }
         });
       }
     </script>
