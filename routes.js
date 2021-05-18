@@ -4,6 +4,7 @@ const { v4: uuid } = require('uuid');
 const line_pay = require("line-pay");
 const cache = require("memory-cache");
 const { exec } = require("child_process");
+const axios = require('axios');
 
 const myLiffId = process.env.LINE_PAY_LIFF_ID;
 
@@ -43,7 +44,7 @@ module.exports = function(app,io){
             cache.put("transactionId", reservation.transactionId);
             cache.put("paymentAccessToken", response.info.paymentAccessToken);
             cache.put("orderId", reservation.orderId);
-            res.redirect(response.info.paymentUrl.web);
+            res.redirect(response.info.paymentUrl.app);
         })
     })
 
@@ -66,7 +67,12 @@ module.exports = function(app,io){
 
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
-                console.log('Success')
+                // res.writeHead(200, {"Content-Type": "application/json"});
+                // const obj = {
+                //     success: true,
+                //     result: result,
+                // }
+                //res.end(JSON.stringify(obj))
                 // exec(`liff init ${process.env.LINE_ACCESS_TOKEN}`);
                 // exec(`liff send ${process.env.LINE_PAY_LIFF_ID} ${process.env.LINE_LIFF_USER_ID}`, (error, stdout, stderr) => {
                 //     if (error) {
@@ -79,7 +85,7 @@ module.exports = function(app,io){
                 //     }
                 //     console.log(`stdout: ${stdout}`);
                 // });
-                res.redirect('back');
+                res.redirect(`back`);
             }else{
                 console.log('Payment Failed.')
             }

@@ -4,21 +4,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEISEIDO LINE LIFF</title>
+    <style>
+      #confirmMessage{
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
+    <h3 id="confirmMessage">Thank you for your purchase.</h3>
+    <h2 id="confirmMessage">Have a nice day.</h2>
+
     <script  src=" https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js "> </script>
     <script>
       myliffId ="1655992232-rGy06EZd";
       liff.init({liffId:myliffId},()=>{
         if(liff.isLoggedIn()){
-          runApp();
+          document.getElementById('confirmMessage').style.display('block');
         }else{
           liff.login() ;
+          document.getElementById('confirmMessage').style.display('block');
         }
       });
       function runApp (){
-        let message = "Thank you for your purchase.";
+        //let message = "Thank you for your purchase.";
         //liff.shareTargetPicker(message)
         //.then(res=>{
         //  console.log(res)
@@ -27,14 +36,35 @@
         //  console.log(err)
         //})
 
-        liff.sendMessages([{
-          'type': 'text',
-          'text': "You've successfully sent a message! Hooray!"
-        }]).then(function() {
-            window.alert('Message sent');
-        }).catch(function(error) {
-            window.alert('Error sending message: ' + error);
-        });
+        //liff.sendMessages([{
+        //  'type': 'text',
+        //  'text': "You've successfully sent a message! Hooray!"
+        //}]).then(function() {
+        //    window.alert('Message sent');
+        //}).catch(function(error) {
+        //    window.alert('Error sending message: ' + error);
+        //});
+
+        //if (liff.isApiAvailable('shareTargetPicker')) {
+        //  liff.shareTargetPicker([{
+        //    type: "text",
+        //    text: message
+        //  }])
+        //  .then(res =>{
+        //    console.log(res)
+        //  }).catch(err => {
+        //    console.log(err)
+        //  })
+        //} 
+        //else {
+        //  alert("你的 LINE App 暫時不支援 Share Target Picker ，將開始外部瀏覽器。")
+        //  liff.openWindow({
+        //    url: "https://line-pay-senren.herokuapp.com/",
+        //    external: true
+        //  });
+        //}
+
+        document.getElementById('confirmMessage').style.display('block');
       }
     </script>
   </body>

@@ -3,8 +3,6 @@
 let express  = require('express'),
     http = require('http'), 
     path = require('path'),
-    https = require('https'),
-    bodyParser=require("body-parser"),
     app = express();
     
 app.use(express.static(path.join(__dirname, '/public/assests')));
