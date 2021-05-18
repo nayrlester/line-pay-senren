@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BOTTENDER LINE LIFF V2 DEMO</title>
+    <title>SEISEIDO LINE LIFF</title>
   </head>
 
   <body>
@@ -14,18 +14,27 @@
         if(liff.isLoggedIn()){
           runApp();
         }else{
-          liff.login();
+          liff.login({redirectUri : 'https://line-pay-senren.herokuapp.com/'}) ;
         }
       });
       function runApp (){
         let message = "Thank you for your purchase.";
-        liff.shareTargetPicker(message)
-        .then(res=>{
-          console.log(res)
-        })
-        .catch(err =>{
-          console.log(err)
-        })
+        //liff.shareTargetPicker(message)
+        //.then(res=>{
+        //  console.log(res)
+        //})
+        //.catch(err =>{
+        //  console.log(err)
+        //})
+
+        liff.sendMessages([{
+          'type': 'text',
+          'text': "You've successfully sent a message! Hooray!"
+        }]).then(function() {
+            window.alert('Message sent');
+        }).catch(function(error) {
+            window.alert('Error sending message: ' + error);
+        });
       }
     </script>
   </body>
