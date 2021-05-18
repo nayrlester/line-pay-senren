@@ -67,18 +67,18 @@ module.exports = function(app,io){
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
                 console.log('Success')
-                exec(`liff init ${process.env.LINE_ACCESS_TOKEN}`);
-                exec(`liff send ${process.env.LINE_PAY_LIFF_ID} ${process.env.LINE_LIFF_USER_ID}`, (error, stdout, stderr) => {
-                    if (error) {
-                        console.log(`error: ${error.message}`);
-                        return;
-                    }
-                    if (stderr) {
-                        console.log(`stderr: ${stderr}`);
-                        return;
-                    }
-                    console.log(`stdout: ${stdout}`);
-                });
+                // exec(`liff init ${process.env.LINE_ACCESS_TOKEN}`);
+                // exec(`liff send ${process.env.LINE_PAY_LIFF_ID} ${process.env.LINE_LIFF_USER_ID}`, (error, stdout, stderr) => {
+                //     if (error) {
+                //         console.log(`error: ${error.message}`);
+                //         return;
+                //     }
+                //     if (stderr) {
+                //         console.log(`stderr: ${stderr}`);
+                //         return;
+                //     }
+                //     console.log(`stdout: ${stdout}`);
+                // });
                 res.redirect('back');
             }else{
                 console.log('Payment Failed.')
