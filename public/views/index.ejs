@@ -15,10 +15,13 @@
     <script  src=" https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js "> </script>
     <script>
       liff.init({liffId:"1655992232-rGy06EZd"},()=>{
-        liff.login();
-        runApp()
+        if(liff.isLoggedIn()){
+          runApp();
+        }else{
+          liff.login();
+        }
       });
-      function  RunApp (){
+      function runApp (){
         liff.getProfile().then(profile=>{
           document.getElementById("pictureUrl").src=profile.pictureUrl;
           document.getElementById("userId").innerHTML='<b>UserId:</b>'+profile.userId;
