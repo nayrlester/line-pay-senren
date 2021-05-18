@@ -68,7 +68,8 @@ module.exports = function(app,io){
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
                 let text_message = "Thank you from liff";
-                res.redirect(`https://line.me/R/oaMessage/${myLiffId}/?${text_message}`)
+                res.redirect('https://liff.line.me/${myLiffId}')
+                // res.redirect(`https://line.me/R/oaMessage/${myLiffId}/?${text_message}`)
                 // res.writeHead(200, {"Content-Type": "application/json"});
                 // const obj = {
                 //     success: true,
@@ -87,7 +88,7 @@ module.exports = function(app,io){
                 //     }
                 //     console.log(`stdout: ${stdout}`);
                 // });
-                res.redirect(`back`);
+                // res.redirect(`back`);
             }else{
                 console.log('Payment Failed.')
             }

@@ -4,11 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEISEIDO LINE LIFF</title>
-    <style>
-      #confirmMessage{
-        display: none;
-      }
-    </style>
   </head>
 
   <body>
@@ -20,21 +15,21 @@
       myliffId ="1655992232-rGy06EZd";
       liff.init({liffId:myliffId},()=>{
         if(liff.isLoggedIn()){
-          document.getElementById('confirmMessage').style.display('block');
+          runApp();
         }else{
           liff.login() ;
-          document.getElementById('confirmMessage').style.display('block');
+          runApp();
         }
       });
       function runApp (){
-        //let message = "Thank you for your purchase.";
-        //liff.shareTargetPicker(message)
-        //.then(res=>{
-        //  console.log(res)
-        //})
-        //.catch(err =>{
-        //  console.log(err)
-        //})
+        let message = "Thank you for your purchase.";
+        liff.shareTargetPicker(message)
+        .then(res=>{
+          console.log(res)
+        })
+        .catch(err =>{
+          console.log(err)
+        })
 
         //liff.sendMessages([{
         //  'type': 'text',
@@ -63,8 +58,6 @@
         //    external: true
         //  });
         //}
-
-        document.getElementById('confirmMessage').style.display('block');
       }
     </script>
   </body>
