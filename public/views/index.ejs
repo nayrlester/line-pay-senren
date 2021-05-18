@@ -14,7 +14,7 @@
         if(liff.isLoggedIn()){
           runApp();
         }else{
-          liff.login({redirectUri : 'https://line-pay-senren.herokuapp.com/'}) ;
+          liff.login() ;
         }
       });
       function runApp (){

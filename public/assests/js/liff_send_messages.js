@@ -1,19 +1,14 @@
 window.onload = function (e) {
-    // init で初期化。基本情報を取得。
-    // https://developers.line.me/ja/reference/liff/#initialize-liff-app
+    // initialize and get basic information
+    // https://developers.line.me/en/reference/liff/#initialize-liff-app
     liff.init(function (data) {
         getProfile();
         initializeApp(data);
+        console.log(data)
     });
 
-    // LIFF アプリを閉じる
-    // https://developers.line.me/ja/reference/liff/#liffclosewindow()
-    document.getElementById('closewindowbutton').addEventListener('click', function () {
-        liff.closeWindow();
-    });
-
-    // ウィンドウを開く
-    // https://developers.line.me/ja/reference/liff/#liffopenwindow()
+    // Open window
+    // https://developers.line.me/en/reference/liff/#liffopenwindow()
     document.getElementById('openwindowbutton').addEventListener('click', function () {
         liff.openWindow({
             url: 'https://line.me'
@@ -27,27 +22,27 @@ window.onload = function (e) {
         });
     });
 
-    // メッセージの送信
+    // Send message
     document.getElementById('sendmessagebutton').addEventListener('click', function () {
-        // https://developers.line.me/ja/reference/liff/#liffsendmessages()
+        // https://developers.line.me/en/reference/liff/#liffsendmessages()
         liff.sendMessages([{
             type: 'text',
-            text: "テキストメッセージの送信"
+            text: "Send text message"
         }, {
             type: 'sticker',
             packageId: '2',
             stickerId: '144'
         }]).then(function () {
-            window.alert("送信完了");
+            window.alert("Sent");
         }).catch(function (error) {
             window.alert("Error sending message: " + error);
         });
     });
 };
 
-// プロファイルの取得と表示
+// Get profile and display
 function getProfile(){
-    // https://developers.line.me/ja/reference/liff/#liffgetprofile()
+    // https://developers.line.me/en/reference/liff/#liffgetprofile()
     liff.getProfile().then(function (profile) {
         document.getElementById('useridprofilefield').textContent = profile.userId;
         document.getElementById('displaynamefield').textContent = profile.displayName;
