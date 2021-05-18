@@ -18,11 +18,14 @@
         }
       });
       function runApp (){
-        let context = liff.getContext();
-        let profile = liff.getProfile();
-        console.log(context)
-        console.log("_____________________")
-        console.log(profile)
+        let message = "Thank you for your purchase.";
+        liff.shareTargetPicker(message)
+        .then(res=>{
+          console.log(res)
+        })
+        .catch(err =>{
+          console.log(err)
+        })
       }
     </script>
   </body>
