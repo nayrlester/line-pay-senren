@@ -7,11 +7,6 @@
   </head>
 
   <body>
-    <img id="pictureUrl" width="25%">
-    <p id="userId"></p>
-    <p id="displayName"></p>
-    <p id="statusMessage"></p>
-    <p id="getDecodedIDToken"></p>
     <script  src=" https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js "> </script>
     <script>
       liff.init({liffId:"1655992232-rGy06EZd"},()=>{
@@ -22,12 +17,17 @@
         }
       });
       function runApp (){
-        liff.getProfile().then(profile=>{
-          document.getElementById("pictureUrl").src=profile.pictureUrl;
-          document.getElementById("userId").innerHTML='<b>UserId:</b>'+profile.userId;
-          document.getElementById("displayName").innerHTML='<b>DisplayName:</b>'+profile.displayName;
-          document.getElementById("statusMessage").innerHTML='<b>StatusMessage:</b>'+profile.statusMessage;
-          document.getElementById("getDecodedIDToken").innerHTML='<b>Email:</b>'+liff.getDecodedIDToken().email;
+        liff.sendMessages([
+          {
+            type: 'text',
+            text: 'Thank you for your purchase. Payment Successful'
+          }
+        ])
+        .then(() => {
+          console.log('message sent');
+        })
+        .catch((err) => {
+          console.log('error', err);
         });
       }
     </script>
