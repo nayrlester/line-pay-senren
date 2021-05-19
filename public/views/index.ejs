@@ -22,25 +22,19 @@
         }
       });
       function runApp (){
+
+        let token = liff.getAccessToken();
+        console.log(token)
         let message = "Thank you for your purchase.";
-        if (liff.isApiAvailable('sendMessages')) {
-          liff.sendMessages([{
-            type: "text",
-            text: message
-          }])
-          .then(res =>{
-            console.log(res)
-          }).catch(err => {
-            console.log(err)
-          })
-        } 
-        else {
-          alert("你的 LINE App 暫時不支援 Share Target Picker ，將開始外部瀏覽器。")
-          liff.openWindow({
-            url: "https://line-pay-senren.herokuapp.com/",
-            external: true
-          });
-        }
+        liff.sendMessages([{
+          type: "text",
+          text: message
+        }])
+        .then(res =>{
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
       }
     </script>
   </body>
