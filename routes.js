@@ -11,7 +11,7 @@ const myLiffId = process.env.LINE_PAY_LIFF_ID;
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: true
+  isSandbox: false
 });
 
 let config_bot = {
@@ -40,6 +40,7 @@ module.exports = function(app,io){
         }
 
         pay.reserve(options).then((response) => {
+            console.log(response)
             let reservation = options;
             reservation.transactionId = response.info.transactionId;
             cache.put("transactionId", reservation.transactionId);
@@ -68,19 +69,10 @@ module.exports = function(app,io){
         let reservation = cache.get(req.query.transactionId);
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
-                let messages = [{
-                    type: "sticker",
-                    packageId: 2,
-                    stickerId: 144
-                },{
-                    type: "text",
-                    text: "ご購入いただきありがとうございます。"
-                }]
-                bot.pushMessage(reservation.userId, messages);
                 // res.redirect("/");
                 // let text_message ="Sample message on liff";
-                // let url = "https://liff.line.me/"+ myLiffId;
-                // res.redirect(url)
+                let url = "https://liff.line.me/"+ myLiffId;
+                res.redirect(url)
                 // res.redirect(`https://line.me/R/oaMessage/`+myLiffId+`/?`+text_message)
                 // res.writeHead(200, {"Content-Type": "application/json"});
                 // const obj = {
