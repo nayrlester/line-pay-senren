@@ -68,6 +68,7 @@ module.exports = function(app,io){
         }
 
         pay.confirm(optionsConfirm).then((response) => {
+            console.log(response)
             if(response.returnMessage == 'Success.'){
                 let url = "https://liff.line.me/"+ myLiffId;
                 res.redirect(url)
