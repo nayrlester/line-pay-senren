@@ -11,7 +11,7 @@ const myLiffId = process.env.LINE_PAY_LIFF_ID;
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: false
+  isSandbox: true
 });
 
 let config_bot = {
@@ -75,37 +75,6 @@ module.exports = function(app,io){
                 console.log('Payment Failed.')
             }
         })
-
-        // pay.confirm(optionsConfirm).then((response) => {
-        //     if(response.returnMessage == 'Success.'){
-        //         // res.redirect("/");
-        //         // let text_message ="Sample message on liff";
-        //         let url = "https://liff.line.me/"+ myLiffId;
-        //         res.redirect(url)
-        //         // res.redirect(`https://line.me/R/oaMessage/`+myLiffId+`/?`+text_message)
-        //         // res.writeHead(200, {"Content-Type": "application/json"});
-        //         // const obj = {
-        //         //     success: true,
-        //         //     result: result,
-        //         // }
-        //         //res.end(JSON.stringify(obj))
-        //         // exec(`liff init ${process.env.LINE_ACCESS_TOKEN}`);
-        //         // exec(`liff send ${process.env.LINE_PAY_LIFF_ID} ${process.env.LINE_LIFF_USER_ID}`, (error, stdout, stderr) => {
-        //         //     if (error) {
-        //         //         console.log(`error: ${error.message}`);
-        //         //         return;
-        //         //     }
-        //         //     if (stderr) {
-        //         //         console.log(`stderr: ${stderr}`);
-        //         //         return;
-        //         //     }
-        //         //     console.log(`stdout: ${stdout}`);
-        //         // });
-        //         // res.redirect(`back`);
-        //     }else{
-        //         console.log('Payment Failed.')
-        //     }
-        // })
     });
 
 }
