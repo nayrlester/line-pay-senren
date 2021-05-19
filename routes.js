@@ -3,15 +3,13 @@ const lineBot = require('@line/bot-sdk');
 const { v4: uuid } = require('uuid'); 
 const line_pay = require("line-pay");
 const cache = require("memory-cache");
-const { exec } = require("child_process");
-const axios = require('axios');
 
 const myLiffId = process.env.LINE_PAY_LIFF_ID;
 
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: true
+  isSandbox: false
 });
 
 let config_bot = {
