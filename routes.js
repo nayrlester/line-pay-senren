@@ -67,9 +67,10 @@ module.exports = function(app,io){
 
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
-                let url = "https://liff.line.me/"+ myLiffId;
-                res.redirect(url)
-                // res.redirect(`https://line.me/R/oaMessage/${myLiffId}/?${text_message}`)
+                let text_message ="Sample message on liff";
+                // let url = "https://liff.line.me/"+ myLiffId;
+                // res.redirect(url)
+                res.redirect(`https://line.me/R/oaMessage/`+myLiffId+`/?`+text_message)
                 // res.writeHead(200, {"Content-Type": "application/json"});
                 // const obj = {
                 //     success: true,
