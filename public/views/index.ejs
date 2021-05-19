@@ -23,7 +23,7 @@
       });
       function runApp (){
         let message = "Thank you for your purchase.";
-        if (liff.isApiAvailable('shareTargetPicker')) {
+        if (liff.isApiAvailable('sendMessages')) {
           liff.sendMessages([{
             type: "text",
             text: message
