@@ -23,8 +23,8 @@
       });
       function runApp (){
 
-        let token = liff.getAccessToken();
-        console.log(token)
+        let context = liff.getContext();
+        console.log(context)
         let message = "Thank you for your purchase.";
         liff.sendMessages([{
           type: "text",
