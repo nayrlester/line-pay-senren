@@ -4,11 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEISEIDO LINE LIFF</title>
+    <style>
+      body{
+        text-align: center;
+      }
+    </style>
   </head>
-
   <body>
     <h3 id="confirmMessage">Thank you for your purchase.</h3>
-    <h2 id="confirmMessage">Have a nice day.</h2>
+    <h4 id="confirmMessage">Have a nice day.</h4>
 
     <script  src=" https://static.line-scdn.net/liff/edge/versions/2.9.0/sdk.js "> </script>
     <script>
@@ -28,9 +32,9 @@
           text: message
         }])
         .then(res =>{
-          console.log(res)
+          window.alert("Message sent.")
         }).catch(err => {
-          console.log(err)
+          window.alert("User doesn't grant required permissions yet")
         })
       }
     </script>
