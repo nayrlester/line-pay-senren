@@ -67,23 +67,14 @@ module.exports = function(app,io){
             transactionId: req.query.transactionId
         }
 
-        app.get(`/pay-confirm`, (req, res) => {
-            let optionsConfirm = {
-                amount: 1,
-                currency: "JPY",
-                transactionId: req.query.transactionId
+        pay.confirm(optionsConfirm).then((response) => {
+            if(response.returnMessage == 'Success.'){
+                let url = "https://liff.line.me/"+ myLiffId;
+                res.redirect(url)
+            }else{
+                console.log('Payment Failed.')
             }
-    
-            pay.confirm(optionsConfirm).then((response) => {
-                if(response.returnMessage == 'Success.'){
-                    let text_message = "Thank you from liff";
-                    let url = "https://liff.line.me/"+ myLiffId;
-                    res.redirect(url)
-                }else{
-                    console.log('Payment Failed.')
-                }
-            })
-        });
+        })
 
         // pay.confirm(optionsConfirm).then((response) => {
         //     if(response.returnMessage == 'Success.'){
