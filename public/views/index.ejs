@@ -24,17 +24,18 @@
       function runApp (){
 
         let context = liff.getContext();
-        console.log(context)
-        let message = "Thank you for your purchase.";
-        liff.sendMessages([{
-          type: "text",
-          text: message
-        }])
-        .then(res =>{
-          console.log(res)
-        }).catch(err => {
-          console.log(err)
-        })
+        if(context.availability.shareTargetPicker.permission == true){
+          let message = "Thank you for your purchase.";
+          liff.shareTargetPicker([{
+            type: "text",
+            text: message
+          }])
+          .then(res =>{
+            console.log(res)
+          }).catch(err => {
+            console.log(err)
+          })
+        }
       }
     </script>
   </body>
