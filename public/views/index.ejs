@@ -23,41 +23,24 @@
       });
       function runApp (){
         let message = "Thank you for your purchase.";
-        liff.shareTargetPicker(message)
-        .then(res=>{
-          console.log(res)
-        })
-        .catch(err =>{
-          console.log(err)
-        })
-
-        //liff.sendMessages([{
-        //  'type': 'text',
-        //  'text': "You've successfully sent a message! Hooray!"
-        //}]).then(function() {
-        //    window.alert('Message sent');
-        //}).catch(function(error) {
-        //    window.alert('Error sending message: ' + error);
-        //});
-
-        //if (liff.isApiAvailable('shareTargetPicker')) {
-        //  liff.shareTargetPicker([{
-        //    type: "text",
-        //    text: message
-        //  }])
-        //  .then(res =>{
-        //    console.log(res)
-        //  }).catch(err => {
-        //    console.log(err)
-        //  })
-        //} 
-        //else {
-        //  alert("你的 LINE App 暫時不支援 Share Target Picker ，將開始外部瀏覽器。")
-        //  liff.openWindow({
-        //    url: "https://line-pay-senren.herokuapp.com/",
-        //    external: true
-        //  });
-        //}
+        if (liff.isApiAvailable('shareTargetPicker')) {
+          liff.sendMessages([{
+            type: "text",
+            text: message
+          }])
+          .then(res =>{
+            console.log(res)
+          }).catch(err => {
+            console.log(err)
+          })
+        } 
+        else {
+          alert("你的 LINE App 暫時不支援 Share Target Picker ，將開始外部瀏覽器。")
+          liff.openWindow({
+            url: "https://line-pay-senren.herokuapp.com/",
+            external: true
+          });
+        }
       }
     </script>
   </body>
