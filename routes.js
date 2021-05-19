@@ -9,7 +9,7 @@ const myLiffId = process.env.LINE_PAY_LIFF_ID;
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: false
+  isSandbox: true
 });
 
 let config_bot = {
@@ -38,7 +38,6 @@ module.exports = function(app,io){
         }
 
         pay.reserve(options).then((response) => {
-            console.log(response)
             let reservation = options;
             reservation.transactionId = response.info.transactionId;
             cache.put("transactionId", reservation.transactionId);
@@ -66,7 +65,6 @@ module.exports = function(app,io){
         }
 
         pay.confirm(optionsConfirm).then((response) => {
-            console.log(response)
             if(response.returnMessage == 'Success.'){
                 let url = "https://liff.line.me/"+ myLiffId;
                 res.redirect(url)
