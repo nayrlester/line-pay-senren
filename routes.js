@@ -1,4 +1,4 @@
-const line = require('@line/bot-sdk');
+const lineBot = require('@line/bot-sdk');
 // const liff = require('@line/liff');
 const { v4: uuid } = require('uuid'); 
 const line_pay = require("line-pay");
@@ -18,6 +18,7 @@ let config_bot = {
     channelAccessToken: process.env.LINE_PAY_BOT_TOKEN,
     channelSecret: process.env.LINE_PAY_BOT_SECRET,
 };
+const bot = new lineBot.Client(config_bot);
 
 module.exports = function(app,io){
 
@@ -48,7 +49,7 @@ module.exports = function(app,io){
         })
     })
 
-    app.post('/webhook', line.middleware(config_bot), (req, res) => {
+    app.post('/webhook', lineBot.middleware(config_bot), (req, res) => {
         Promise
           .all(req.body.events.map(handleEvent))
           .then((result) => res.json(result))
@@ -64,13 +65,22 @@ module.exports = function(app,io){
             currency: "JPY",
             transactionId: req.query.transactionId
         }
-
+        let reservation = cache.get(req.query.transactionId);
         pay.confirm(optionsConfirm).then((response) => {
             if(response.returnMessage == 'Success.'){
+                let messages = [{
+                    type: "sticker",
+                    packageId: 2,
+                    stickerId: 144
+                },{
+                    type: "text",
+                    text: "ご購入いただきありがとうございます。"
+                }]
+                bot.pushMessage(reservation.userId, messages);
                 // res.redirect("/");
-                let text_message ="Sample message on liff";
-                let url = "https://liff.line.me/"+ myLiffId;
-                res.redirect(url)
+                // let text_message ="Sample message on liff";
+                // let url = "https://liff.line.me/"+ myLiffId;
+                // res.redirect(url)
                 // res.redirect(`https://line.me/R/oaMessage/`+myLiffId+`/?`+text_message)
                 // res.writeHead(200, {"Content-Type": "application/json"});
                 // const obj = {
