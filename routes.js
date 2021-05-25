@@ -31,6 +31,10 @@ module.exports = function(app,io){
     app.get('/terms', function(req,res){
         res.render('terms.ejs')
     })
+
+    app.get('/confirm', function(req,res){
+        res.render('confirm.ejs')
+    })
     
     app.get('/send-id', function(req, res) {
         res.json({id: myLiffId});
