@@ -9,7 +9,7 @@ const myLiffId = process.env.LINE_PAY_LIFF_ID;
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: false
+  isSandbox: true
 });
 
 let config_bot = {
