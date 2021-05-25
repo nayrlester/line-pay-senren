@@ -9,7 +9,7 @@ const myLiffId = process.env.LINE_PAY_LIFF_ID;
 const pay = new line_pay({
   channelId: process.env.LINE_PAY_CHANNEL_ID,
   channelSecret: process.env.LINE_PAY_CHANNEL_SECRET,
-  isSandbox: true
+  isSandbox: false
 });
 
 let config_bot = {
@@ -23,6 +23,14 @@ module.exports = function(app,io){
     app.get('/', function(req, res) {
         res.render('index.ejs')
     });
+
+    app.get('/privacy', function(req, res) {
+        res.render('privacy.ejs')
+    });
+
+    app.get('/terms', function(req,res){
+        res.render('terms.ejs')
+    })
     
     app.get('/send-id', function(req, res) {
         res.json({id: myLiffId});
